@@ -440,6 +440,34 @@
             margin: 0 auto 30px;
         }
 
+        /* Contact Form Container */
+        .contact-form-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 30px;
+        }
+
+        .contact-form-container.active {
+            max-height: 1200px;
+        }
+
+        .contact-form-wrapper {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .contact-form-wrapper iframe {
+            width: 100%;
+            min-height: 800px;
+            border: none;
+            border-radius: 5px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -883,7 +911,21 @@
             <h2>Ready to Transform Your Irrigation?</h2>
             <p>Contact us today to learn more about Atlantis Center Pivot and Linear Irrigation Systems and how they can
                 benefit your operation.</p>
-            <a href="#" class="btn">Get In Touch</a>
+            <a href="#" class="btn" id="contact-btn">Get In Touch</a>
+
+            <!-- Contact Form Container -->
+            <div class="contact-form-container" id="contact-form-container">
+                <div class="contact-form-wrapper">
+                    <iframe id="JotFormIFrame-253161757416964" title="ATLANTIS - Contact Form"
+                        onload="window.parent.scrollTo(0,0)" allowtransparency="true"
+                        allow="geolocation; microphone; camera; fullscreen"
+                        src="https://form.jotform.com/253161757416964" frameborder="0"
+                        style="min-width:100%;max-width:100%;height:539px;border:none;" scrolling="no">
+                    </iframe>
+                    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+                    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-253161757416964']", "https://form.jotform.com/")</script>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -936,6 +978,25 @@
     </footer>
 
     <script>
+        // Contact form toggle functionality
+        document.getElementById('contact-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            const formContainer = document.getElementById('contact-form-container');
+            const isActive = formContainer.classList.contains('active');
+
+            formContainer.classList.toggle('active');
+
+            // Change button text
+            this.textContent = isActive ? 'Get In Touch' : 'Close Form';
+
+            // Scroll to form if opening
+            if (!isActive) {
+                setTimeout(() => {
+                    formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        });
+
         // Feature card click functionality
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('click', function () {
