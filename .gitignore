@@ -12,3 +12,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Videos (too large for GitHub)
+Videos/
