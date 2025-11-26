@@ -767,6 +767,39 @@
                             tower alignment, zero maintenance, and simplified installation.</p>
                     </div>
                 </div>
+                <div class="feature-card" data-feature="vri">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
+                            alt="Variable Rate Irrigation">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Variable Rate Irrigation (VRI)</h3>
+                        <p>Optimize water usage with precision VRI technology. Apply the right amount of water to each
+                            zone based on soil type, crop needs, and topography for maximum efficiency.</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-feature="mobile-drip">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                            alt="Mobile Drip Irrigation">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Mobile Drip Irrigation</h3>
+                        <p>Combine the efficiency of drip irrigation with the flexibility of center pivot systems.
+                            Deliver water directly to plant roots while covering large areas.</p>
+                    </div>
+                </div>
+                <div class="feature-card" data-feature="remote">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                            alt="Remote Control">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Remote Control</h3>
+                        <p>Control your irrigation system from anywhere with our advanced remote monitoring and control
+                            platform. Real-time status updates and instant adjustments at your fingertips.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Feature Detail Sections -->
@@ -841,6 +874,84 @@
                             <li>Reduced cable requirements for lower costs</li>
                             <li>Remote monitoring and control capabilities</li>
                             <li>Energy-efficient operation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-detail" id="vri-detail">
+                <div class="feature-detail-content">
+                    <div class="feature-video">
+                        <video controls loop style="width: 100%; height: 100%; min-height: 400px;">
+                            <source
+                                src="https://github.com/omerdemircioglu/atlantiscp/releases/download/repo_video/hero_video.mp4"
+                                type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="feature-info">
+                        <h3>Variable Rate Irrigation (VRI)</h3>
+                        <p>Our VRI technology allows you to apply different amounts of water to different zones within
+                            your field, maximizing efficiency and crop yield.</p>
+                        <ul>
+                            <li>Zone-based water application control</li>
+                            <li>Integration with soil moisture sensors</li>
+                            <li>Prescription map compatibility</li>
+                            <li>Real-time adjustment capabilities</li>
+                            <li>Water savings up to 30%</li>
+                            <li>Improved crop uniformity and yield</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-detail" id="mobile-drip-detail">
+                <div class="feature-detail-content">
+                    <div class="feature-video">
+                        <video controls loop style="width: 100%; height: 100%; min-height: 400px;">
+                            <source
+                                src="https://github.com/omerdemircioglu/atlantiscp/releases/download/repo_video/hero_video.mp4"
+                                type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="feature-info">
+                        <h3>Mobile Drip Irrigation</h3>
+                        <p>Combine the water efficiency of drip irrigation with the coverage area of center pivot
+                            systems for optimal performance.</p>
+                        <ul>
+                            <li>Direct root zone water delivery</li>
+                            <li>Reduced evaporation losses</li>
+                            <li>Compatible with existing pivot infrastructure</li>
+                            <li>Lower operating pressure requirements</li>
+                            <li>Ideal for high-value crops</li>
+                            <li>Easy installation and maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-detail" id="remote-detail">
+                <div class="feature-detail-content">
+                    <div class="feature-video">
+                        <video controls loop style="width: 100%; height: 100%; min-height: 400px;">
+                            <source
+                                src="https://github.com/omerdemircioglu/atlantiscp/releases/download/repo_video/hero_video.mp4"
+                                type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="feature-info">
+                        <h3>Remote Control</h3>
+                        <p>Monitor and control your irrigation system from anywhere in the world with our advanced
+                            cloud-based platform.</p>
+                        <ul>
+                            <li>Real-time system status monitoring</li>
+                            <li>Start/stop control from mobile app</li>
+                            <li>Automated alerts and notifications</li>
+                            <li>Historical data and analytics</li>
+                            <li>Multi-system management</li>
+                            <li>24/7 access from any device</li>
                         </ul>
                     </div>
                 </div>
@@ -1026,7 +1137,7 @@
             if (!isActive) {
                 setTimeout(() => {
                     formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 300);
+                }, 100);
             }
         });
 
@@ -1046,10 +1157,22 @@
                 // Toggle the clicked detail section
                 detailSection.classList.toggle('active');
 
-                // Scroll to the detail section if it's being opened
+                // Scroll to the detail section if opening
                 if (detailSection.classList.contains('active')) {
                     setTimeout(() => {
-                        detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Calculate the position to scroll to
+                        const detailRect = detailSection.getBoundingClientRect();
+                        const detailTop = detailRect.top + window.pageYOffset;
+                        const detailHeight = detailRect.height;
+                        const windowHeight = window.innerHeight;
+
+                        // Try to center the detail section, but account for page limits
+                        const targetScroll = detailTop - (windowHeight / 2) + (detailHeight / 2);
+
+                        window.scrollTo({
+                            top: targetScroll,
+                            behavior: 'smooth'
+                        });
                     }, 300);
                 }
             });
