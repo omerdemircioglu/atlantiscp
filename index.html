@@ -780,8 +780,7 @@
                 </div>
                 <div class="feature-card" data-feature="mobile-drip">
                     <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                            alt="Mobile Drip Irrigation">
+                        <img src="Images/mobilDrip.JPG" alt="Mobile Drip Irrigation">
                     </div>
                     <div class="feature-content">
                         <h3>Mobile Drip Irrigation</h3>
@@ -1146,37 +1145,51 @@
             card.addEventListener('click', function () {
                 const feature = this.getAttribute('data-feature');
                 const detailSection = document.getElementById(`${feature}-detail`);
+                const isCurrentlyActive = detailSection.classList.contains('active');
 
-                // Close all other detail sections
-                document.querySelectorAll('.feature-detail').forEach(section => {
-                    if (section.id !== `${feature}-detail`) {
-                        section.classList.remove('active');
-                    }
-                });
+                // Check if there's another detail section currently open
+                const currentlyOpen = document.querySelector('.feature-detail.active');
 
-                // Toggle the clicked detail section
-                detailSection.classList.toggle('active');
+                if (currentlyOpen && currentlyOpen !== detailSection) {
+                    // Close the currently open section first
+                    currentlyOpen.classList.remove('active');
 
-                // Scroll to the detail section if opening
-                if (detailSection.classList.contains('active')) {
+                    // Wait for close animation to complete, then open new section
                     setTimeout(() => {
-                        // Calculate the position to scroll to
-                        const detailRect = detailSection.getBoundingClientRect();
-                        const detailTop = detailRect.top + window.pageYOffset;
-                        const detailHeight = detailRect.height;
-                        const windowHeight = window.innerHeight;
+                        if (!isCurrentlyActive) {
+                            detailSection.classList.add('active');
+                            scrollToDetail(detailSection);
+                        }
+                    }, 500); // Match CSS transition duration
+                } else {
+                    // Toggle if clicking the same card or no other is open
+                    detailSection.classList.toggle('active');
 
-                        // Try to center the detail section, but account for page limits
-                        const targetScroll = detailTop - (windowHeight / 2) + (detailHeight / 2);
-
-                        window.scrollTo({
-                            top: targetScroll,
-                            behavior: 'smooth'
-                        });
-                    }, 300);
+                    if (detailSection.classList.contains('active')) {
+                        scrollToDetail(detailSection);
+                    }
                 }
             });
         });
+
+        // Helper function to scroll to detail section
+        function scrollToDetail(detailSection) {
+            setTimeout(() => {
+                // Calculate the position to scroll to
+                const detailRect = detailSection.getBoundingClientRect();
+                const detailTop = detailRect.top + window.pageYOffset;
+                const detailHeight = detailRect.height;
+                const windowHeight = window.innerHeight;
+
+                // Try to center the detail section, but account for page limits
+                const targetScroll = detailTop - (windowHeight / 2) + (detailHeight / 2);
+
+                window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                });
+            }, 300);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
