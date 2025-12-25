@@ -380,17 +380,41 @@
             margin-bottom: 20px;
         }
 
-        .innovation-img {
+        .innovation-video {
             flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-radius: 20px;
+            overflow: visible;
         }
 
-        .innovation-img img {
+        .innovation-video::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 30px;
+            background: 
+                linear-gradient(to right, white 0%, transparent 3%, transparent 97%, white 100%),
+                linear-gradient(to bottom, white 0%, transparent 3%, transparent 97%, white 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .innovation-video video {
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 20px;
+            -webkit-mask-image: 
+                linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%);
+            -webkit-mask-composite: source-in;
+            mask-image: 
+                linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%);
+            mask-composite: intersect;
         }
 
         .innovation-features {
@@ -970,44 +994,46 @@
         <div class="container">
             <div class="innovation-content">
                 <div class="innovation-text">
-                    <h2>Next Generation Control System</h2>
-                    <p>Our R&D team proudly introduces the new generation control system - a milestone in precision
-                        irrigation technology.</p>
+                    <h2>Precise Engineering Meets Innovation</h2>
+                    <p>At Atlantis, decades of precise engineering expertise combine with cutting-edge innovation to create irrigation solutions that set new industry standards.</p>
                     <div class="innovation-features">
                         <div class="innovation-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-cogs"></i>
                             <div>
-                                <h3>Perfect Tower Alignment</h3>
-                                <p>Synchronized movement for uniform water distribution.</p>
+                                <h3>State-of-the-Art Design</h3>
+                                <p>Every component is engineered with meticulous precision for optimal performance and longevity.</p>
                             </div>
                         </div>
                         <div class="innovation-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-lightbulb"></i>
                             <div>
-                                <h3>Zero Maintenance</h3>
-                                <p>Solid-state, enclosed design prevents wear and unauthorized access.</p>
+                                <h3>Innovative Technologies</h3>
+                                <p>Continuous R&D drives breakthrough solutions that redefine irrigation efficiency.</p>
                             </div>
                         </div>
                         <div class="innovation-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-award"></i>
                             <div>
-                                <h3>No Tower Box Needed</h3>
-                                <p>Simplified structure with plug & play installation.</p>
+                                <h3>Maximum Quality</h3>
+                                <p>Premium materials and rigorous quality control ensure exceptional durability and reliability.</p>
                             </div>
                         </div>
                         <div class="innovation-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <i class="fas fa-drafting-compass"></i>
                             <div>
-                                <h3>Fewer Cables, Lower Cost</h3>
-                                <p>Efficiency reimagined in every detail.</p>
+                                <h3>Optimum Design</h3>
+                                <p>Advanced engineering techniques deliver the perfect balance of performance and efficiency.</p>
                             </div>
                         </div>
                     </div>
-                    <p>With this new control system, Atlantis once again sets the standard for smart, safe, and
-                        sustainable irrigation worldwide.</p>
+                    <p>Through our commitment to precise engineering and innovative thinking, Atlantis delivers world-class irrigation systems that maximize productivity while minimizing resource consumption.</p>
+                    <a href="#" class="btn" style="margin-top: 20px;"><i class="fas fa-download" style="margin-right: 8px;"></i>Download Our Catalogs</a>
                 </div>
-                <div class="innovation-img">
-                    <img src="Images/innovativeControl.jpg" alt="Atlantis R&D">
+                <div class="innovation-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://github.com/omerdemircioglu/atlantiscp/releases/download/repo_video/0001-0300.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
